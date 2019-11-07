@@ -46,24 +46,14 @@ var person = {
     name: 'Alex',
     surname: 'Ivanov',
     age: 35,
-    isMan: true,
     friend: {
         name: 'Ann',
         surname: 'Petrova',
-        age: 25,
-        isMan: false,
-        lovedBook: {
-            name: 'Peasful warrior',
-            author: 'Dan Millman',
-            dateOfIssue: 2005
-        }
-    },
-    child: {
-        name: 'Andrew',
-        age: 14,
-        isMan: true
+        age: 25
     }
 };
+console.log('Parent obj:');
+console.log(person);
 
 function objectClone(obj) {
     var newPerson = {};
@@ -73,23 +63,17 @@ function objectClone(obj) {
     if (typeof obj[key] === 'object' && obj[key] !== null) {
         var childObj = {};
         var innerObj = obj[key];
-        for (var index in innerObj) {
-            childObj[index] = innerObj[index];
+        for (var k in innerObj) {
+            childObj[k] = innerObj[k];
         }
         newPerson[key] = childObj;
     }
     return newPerson;
-
 }
-
-
-console.log(person);
 console.log('Cloned object ---------------------');
-person.name = 'Peter';
-person.friend.name = 'Kate';
-person.friend.age = 20;
-person.child.name = 'Sam';
-person.friend.lovedBook.name = 'Peace and War';
-person.friend.lovedBook.author = 'Lev Tolstoy';
-person.friend.lovedBook.dateOfIssue = 1870;
-console.log(objectClone(person));
+var person2 = objectClone(person);
+person2.name = 'Peter';
+person2.friend.name = 'Kate';
+person2.friend.age = 20;
+console.log(person2);
+
